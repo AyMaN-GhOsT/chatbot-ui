@@ -15,7 +15,13 @@ export const Key: FC<Props> = ({ apiKey, onApiKeyChange }) => {
   const [isChanging, setIsChanging] = useState(false);
   const [newKey, setNewKey] = useState(apiKey);
   const inputRef = useRef<HTMLInputElement>(null);
+  const { apiKey } = useContext(ChatbarContext)
 
+fetch(`https://api.openai.com/v1/completions`, {
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${apiKey}`
+      
   const handleEnterDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault();
