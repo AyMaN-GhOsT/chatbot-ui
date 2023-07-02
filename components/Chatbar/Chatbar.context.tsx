@@ -5,8 +5,7 @@ import { ActionType } from '@/hooks/useCreateReducer';
 import { Conversation } from '@/types/chat';
 import { SupportedExportFormats } from '@/types/export';
 import { PluginKey } from '@/types/plugin';
-import OPENAI_API_KEY from '../OPENAI_API_KEY'
-import apiKey from '../apiKey'
+import { OPENAI_API_KEY } from 'dotenv'
 
 import { ChatbarInitialState } from './Chatbar.state';
 
@@ -20,8 +19,10 @@ export interface ChatbarContextProps {
   handlePluginKeyChange: (pluginKey: PluginKey);
   handleClearPluginKey: (pluginKey: PluginKey);
   handleApiKeyChange: (apiKey: string);
-}
+  apiKey: typeof OPENAI_API_KEY  
 
-const ChatbarContext = createContext<ChatbarContextProps>(undefined!);
+}
+const ChatbarContext = createContext<ChatbarContextProps>({
+apiKey: OPENAI_API_KEY,
 
 export default ChatbarContext;
